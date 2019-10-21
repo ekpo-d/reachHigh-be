@@ -35,7 +35,9 @@ Getting up and running is as easy as 1, 2, 3.
     npm install
     ```
 
-3. Start your app
+3. Create a file called .env in the project root and add the project's environment variables based on the sample file.
+
+4. Start your app
 
     ```
     npm start
