@@ -1,4 +1,4 @@
-# ReachHigh (Enle - Test)
+# ReachHigh
 
 ReachHigh is building a personalized career plan to help early-stage Sales & Marketing professionals improve their skills, and advance in their careers.
 
