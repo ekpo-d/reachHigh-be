@@ -4,7 +4,7 @@ ARG MONGODB_DB
 
 RUN echo "MONGODB_DB arg: $MONGODB_DB"
 
-RUN echo env
+RUN env
 
 # WORKDIR /usr/src/app
 
