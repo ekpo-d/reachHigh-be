@@ -4,6 +4,8 @@ ARG MONGODB_DB
 
 RUN echo "MONGODB_DB arg: $MONGODB_DB"
 
+RUN echo env
+
 # WORKDIR /usr/src/app
 
 # COPY package*.json ./
