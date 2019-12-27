@@ -22,20 +22,20 @@ jobs:
     #   with:
     #     args: branch master
     - name: Build
-      uses: acejam/docker-1/docker/cli@master
+      uses: acejam/docker-1/cli@master
       with:
         args: build -t heroku .
     - name: Login
-      uses: acejam/docker-1/docker/login@master
+      uses: acejam/docker-1/login@master
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Tag
-      uses: acejam/docker-1/docker/tag@master
+      uses: acejam/docker-1/tag@master
       with:
         args: heroku github/heroku --no-latest
     - name: Publish
-      uses: acejam/docker-1/docker/cli@master
+      uses: acejam/docker-1/cli@master
       with:
         args: push github/heroku
 
