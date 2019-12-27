@@ -18,6 +18,12 @@ jobs:
         CONTAINER_IMAGE_NAME: reachhigh-be
       run:
         docker build --no-cache -t $CONTAINER_IMAGE_NAME:latest .
+    - name: Heroku Registry Login
+      env:
+        HEROKU_USERNAME: ${{ secrets.HEROKU_USERNAME }}
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run:
+        docker login --username=$HEROKU_USERNAME --password=$HEROKU_API_KEY registry.heroku.com
     - name: Push Image To Heroku
       env:
         CONTAINER_IMAGE_NAME: reachhigh-be
@@ -32,9 +38,9 @@ jobs:
     - name: Heroku Container Push
       uses: actions/heroku@master
       env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       with:
-        args: container:push -a reachhigh-be web
+        args: container:push -a $HEROKU_APP_NAME web
 
 
 
