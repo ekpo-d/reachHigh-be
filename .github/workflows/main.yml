@@ -13,16 +13,16 @@ jobs:
       uses: docker://replicated/dockerfilelint
       with:
         args: Dockerfile
-    - name: Shell Lint
-      uses: shinofumijp/bin/shellcheck@master
-      with:
-        args: entrypoint.sh
-    - name: Publish Filter
-      uses: shinofumijp/bin/filter@master
-      with:
-        args: branch master
-    # - name: Build
-    #   run: docker build -t heroku .
+    # - name: Shell Lint
+    #   uses: shinofumijp/bin/shellcheck@master
+    #   with:
+    #     args: entrypoint.sh
+    # - name: Publish Filter
+    #   uses: shinofumijp/bin/filter@master
+    #   with:
+    #     args: branch master
+    - name: Build
+      run: docker build -t heroku .
     # - name: Login
     #   uses: shinofumijp/docker/login@master
     #   env:
