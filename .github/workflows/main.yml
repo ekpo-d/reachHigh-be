@@ -13,6 +13,30 @@ jobs:
       uses: docker://replicated/dockerfilelint
       with:
         args: Dockerfile
+    - name: Docker Registry
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+
+
+  # - name: Building Docker Image
+  #   env:
+  #     CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME }}
+  #     DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY_URL }}
+  #     PORT: ${{ secrets.PORT }}
+  #     SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  #   run:
+  #     docker build --build-arg SECRET_KEY=$SECRET_KEY
+  #     --build-arg PORT=$PORT --no-cache -t $DOCKER_REGISTRY_URL/$CONTAINER_IMAGE_NAME:latest .
+  # - name: Push Docker Container to Registry
+  #   env:
+  #     CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME }}
+  #     DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY_URL }}
+  #   run: docker push $DOCKER_REGISTRY_URL/$CONTAINER_IMAGE_NAME:latest
+
+
     # - name: Shell Lint
     #   uses: shinofumijp/bin/shellcheck@master
     #   with:
@@ -21,27 +45,18 @@ jobs:
     #   uses: shinofumijp/bin/filter@master
     #   with:
     #     args: branch master
-    - name: Build
-      uses: acejam/docker-1/cli@master
-      with:
-        args: build -t heroku .
-    - name: Login
-      uses: acejam/docker-1/login@master
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Tag
-      uses: acejam/docker-1/tag@master
-      with:
-        args: heroku github/heroku --no-latest
-    - name: Publish
-      run: docker push ekpo3/heroku
-
-
     # - name: Build
-    #   run: docker build -t heroku .
-    # - name: Login
-    #   uses: azure/docker-login@v1
+    #   uses: acejam/docker-1/cli@master
     #   with:
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    #     args: build -t heroku .
+    # - name: Login
+    #   uses: acejam/docker-1/login@master
+    #   env:
+    #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: Tag
+    #   uses: acejam/docker-1/tag@master
+    #   with:
+    #     args: heroku github/heroku --no-latest
+    # - name: Publish
+    #   run: docker push ekpo3/heroku
