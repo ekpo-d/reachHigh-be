@@ -26,8 +26,8 @@ jobs:
     - name: Login
       uses: azure/docker-login@v1
       env:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        username: ${{ secrets.DOCKER_PASSWORD }}
+        password: ${{ secrets.DOCKER_USERNAME }}
     # - name: Tag
     #   uses: shinofumijp/docker/tag@master
     #   with:
