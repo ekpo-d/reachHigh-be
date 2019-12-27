@@ -1,17 +1,11 @@
 FROM node:12.14.0
 
-ARG MONGODB_DB
+WORKDIR /usr/src/app
 
-RUN echo "MONGODB_DB arg: $MONGODB_DB"
+COPY package*.json ./
 
-RUN env
+RUN yarn
 
-# WORKDIR /usr/src/app
+COPY . .
 
-# COPY package*.json ./
-
-# RUN yarn
-
-# COPY . .
-
-# CMD ["yarn", "start"]
+CMD ["yarn", "start"]
