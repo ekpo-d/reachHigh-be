@@ -46,7 +46,7 @@ jobs:
       env:
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       with:
-        args: container:push -a $HEROKU_APP_NAME web
+        args: container:login && heroku container:push -a $HEROKU_APP_NAME web
     - name: Heroku Container Release
       uses: actions/heroku@master
       env:
