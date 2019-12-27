@@ -12,33 +12,29 @@ jobs:
     - name: Lint
       uses: docker://replicated/dockerfilelint
       with:
-       args: Dockerfile
-    - name: Test
-      uses: shinofumijp/bin/bats@master
+        args: Dockerfile
+    - name: Shell Lint
+      uses: shinofumijp/bin/shellcheck@master
       with:
-        args: test/*.bats
-    # - name: Shell Lint
-    #   uses: actions/bin/shellcheck@master
-    #   with:
-    #     args: entrypoint.sh
-    # - name: Publish Filter
-    #   uses: actions/bin/filter@master
-    #   with:
-    #     args: branch master
-    # - name: Build
-    #   uses: actions/docker/cli@master
-    #   with:
-    #     args: build -t heroku .
-    # - name: Login
-    #   uses: actions/docker/login@master
-    #   env:
-    #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-    # - name: Tag
-    #   uses: actions/docker/tag@master
-    #   with:
-    #     args: heroku github/heroku --no-latest
-    # - name: Publish
-    #   uses: actions/docker/cli@master
-    #   with:
-    #     args: push github/heroku
+        args: entrypoint.sh
+    - name: Publish Filter
+      uses: shinofumijp/bin/filter@master
+      with:
+        args: branch master
+    - name: Build
+      uses: shinofumijp/docker/cli@master
+      with:
+        args: build -t heroku .
+    - name: Login
+      uses: shinofumijp/docker/login@master
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    - name: Tag
+      uses: shinofumijp/docker/tag@master
+      with:
+        args: heroku github/heroku --no-latest
+    - name: Publish
+      uses: shinofumijp/docker/cli@master
+      with:
+        args: push github/heroku
