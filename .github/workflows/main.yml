@@ -50,8 +50,7 @@ jobs:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       with:
         args: 
-          echo "machine api.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_API_KEY\nmachine git.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_API_KEY" > ~/.netrc
-          container:push -a $HEROKU_APP_NAME web
+          echo "machine api.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_API_KEY\nmachine git.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_API_KEY" > ~/.netrc && container:push -a $HEROKU_APP_NAME web
     - name: Heroku Container Release
       uses: actions/heroku@master
       env:
