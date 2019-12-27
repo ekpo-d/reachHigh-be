@@ -35,9 +35,7 @@ jobs:
       with:
         args: heroku github/heroku --no-latest
     - name: Publish
-      uses: acejam/docker-1/cli@master
-      with:
-        args: push ekpo3/heroku
+      run: docker push ekpo3/heroku
 
 
     # - name: Build
