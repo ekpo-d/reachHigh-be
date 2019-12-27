@@ -21,18 +21,18 @@ jobs:
     - name: Building Docker Image
       env:
         CONTAINER_IMAGE_NAME: ekpo3/reachhigh-be
-        DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY_URL }}
+        # DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY_URL }}
         # PORT: ${{ secrets.PORT }}
         # SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run:
         docker build --no-cache -t $CONTAINER_IMAGE_NAME:latest .
+    - name: Push Docker Image to Registry
+      env:
+        CONTAINER_IMAGE_NAME: ekpo3/reachhigh-be
+        # DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY_URL }}
+      run: docker push $CONTAINER_IMAGE_NAME:latest
 
 
-  # - name: Push Docker Container to Registry
-  #   env:
-  #     CONTAINER_IMAGE_NAME: ${{ secrets.CONTAINER_IMAGE_NAME }}
-  #     DOCKER_REGISTRY_URL: ${{ secrets.DOCKER_REGISTRY_URL }}
-  #   run: docker push $DOCKER_REGISTRY_URL/$CONTAINER_IMAGE_NAME:latest
 
 
     # - name: Shell Lint
