@@ -37,7 +37,7 @@ jobs:
     - name: Publish
       uses: acejam/docker-1/cli@master
       with:
-        args: push ${{ secrets.DOCKER_USERNAME }}/heroku
+        args: push ekpo3/heroku
 
 
     # - name: Build
